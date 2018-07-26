@@ -194,6 +194,9 @@ public class CompactCalendarView extends View {
         compactCalendarController.setDisplayPastDaysTextColor(displayPastDaysTextColor);
     }
 
+    public void setDaysHeaderTextcolor(int daysHeaderTextcolor) {
+        compactCalendarController.setDaysHeaderTextColor(daysHeaderTextcolor);
+    }
 
 
     /**

@@ -105,6 +105,7 @@ class CompactCalendarController {
     private int calenderBackgroundColor = Color.WHITE;
     private int otherMonthDaysTextColor;
     private int displayPastDaysTextColor;
+    private int daysHeaderTextColor;
 
     private TimeZone timeZone;
 
@@ -135,6 +136,7 @@ class CompactCalendarController {
         this.locale = locale;
         this.timeZone = timeZone;
         this.displayPastDaysTextColor = calenderTextColor;
+        this.daysHeaderTextColor = calenderTextColor;
         loadAttributes(attrs, context);
         init(context);
     }
@@ -162,6 +164,7 @@ class CompactCalendarController {
                 shouldSelectFirstDayOfMonthOnScroll = typedArray.getBoolean(R.styleable.CompactCalendarView_compactCalendarShouldSelectFirstDayOfMonthOnScroll, shouldSelectFirstDayOfMonthOnScroll);
                 displayPastDaysInDifferentColor = typedArray.getBoolean(R.styleable.CompactCalendarView_compactCalendarDisplayPastDaysInDifferentColor, displayPastDaysInDifferentColor);
                 displayPastDaysTextColor = typedArray.getColor(R.styleable.CompactCalendarView_compactCalendarDisplayPastDaysTextColor, displayPastDaysTextColor);
+                daysHeaderTextColor = typedArray.getColor(R.styleable.CompactCalendarView_compactCalendarDaysHeaderTextColor, daysHeaderTextColor);
             } finally {
                 typedArray.recycle();
             }
@@ -346,6 +349,10 @@ class CompactCalendarController {
 
     void setDisplayPastDaysTextColor(int displayPastDaysTextColor) {
         this.displayPastDaysTextColor = displayPastDaysTextColor;
+    }
+
+    void setDaysHeaderTextColor(int daysHeaderTextColor) {
+        this.daysHeaderTextColor = daysHeaderTextColor;
     }
 
     void scrollRight() {
@@ -925,10 +932,9 @@ class CompactCalendarController {
             if (dayRow == 0) {
                 // first row, so draw the first letter of the day
                 if (shouldDrawDaysHeader) {
-                    dayPaint.setColor(calenderTextColor);
+                    dayPaint.setColor(daysHeaderTextColor);
                     dayPaint.setTypeface(Typeface.DEFAULT_BOLD);
                     dayPaint.setStyle(Paint.Style.FILL);
-                    dayPaint.setColor(calenderTextColor);
                     canvas.drawText(dayColumnNames[colDirection], xPosition, paddingHeight, dayPaint);
                     dayPaint.setTypeface(Typeface.DEFAULT);
                 }

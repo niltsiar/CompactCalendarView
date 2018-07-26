@@ -55,5 +55,7 @@
       format="boolean" />
     <attr name="compactCalendarDisplayPastDaysTextColor"
       format="color" />
+    <attr name="compactCalendarDaysHeaderTextColor"
+      format="color" />
   </declare-styleable>
 </resources>
