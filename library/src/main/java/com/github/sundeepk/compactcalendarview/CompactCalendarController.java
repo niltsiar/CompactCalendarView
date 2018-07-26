@@ -22,10 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import static com.github.sundeepk.compactcalendarview.CompactCalendarView.CompactCalendarViewListener;
-import static com.github.sundeepk.compactcalendarview.CompactCalendarView.FILL_LARGE_INDICATOR;
-import static com.github.sundeepk.compactcalendarview.CompactCalendarView.NO_FILL_LARGE_INDICATOR;
-import static com.github.sundeepk.compactcalendarview.CompactCalendarView.SMALL_INDICATOR;
+import static com.github.sundeepk.compactcalendarview.CompactCalendarView.*;
 
 
 class CompactCalendarController {
@@ -79,6 +76,7 @@ class CompactCalendarController {
     private boolean displayOtherMonthDays = false;
     private boolean shouldSelectFirstDayOfMonthOnScroll = true;
     private boolean isRtl = false;
+    private boolean displayPastDaysInDifferentColor = false;
 
     private CompactCalendarViewListener listener;
     private VelocityTracker velocityTracker = null;
@@ -106,6 +104,8 @@ class CompactCalendarController {
     private int currentSelectedDayTextColor;
     private int calenderBackgroundColor = Color.WHITE;
     private int otherMonthDaysTextColor;
+    private int displayPastDaysTextColor;
+
     private TimeZone timeZone;
 
     /**
@@ -134,7 +134,7 @@ class CompactCalendarController {
         this.eventsContainer = eventsContainer;
         this.locale = locale;
         this.timeZone = timeZone;
-        this.displayOtherMonthDays = false;
+        this.displayPastDaysTextColor = calenderTextColor;
         loadAttributes(attrs, context);
         init(context);
     }
@@ -160,6 +160,8 @@ class CompactCalendarController {
                 currentSelectedDayIndicatorStyle = typedArray.getInt(R.styleable.CompactCalendarView_compactCalendarCurrentSelectedDayIndicatorStyle, FILL_LARGE_INDICATOR);
                 displayOtherMonthDays = typedArray.getBoolean(R.styleable.CompactCalendarView_compactCalendarDisplayOtherMonthDays, displayOtherMonthDays);
                 shouldSelectFirstDayOfMonthOnScroll = typedArray.getBoolean(R.styleable.CompactCalendarView_compactCalendarShouldSelectFirstDayOfMonthOnScroll, shouldSelectFirstDayOfMonthOnScroll);
+                displayPastDaysInDifferentColor = typedArray.getBoolean(R.styleable.CompactCalendarView_compactCalendarDisplayPastDaysInDifferentColor, displayPastDaysInDifferentColor);
+                displayPastDaysTextColor = typedArray.getColor(R.styleable.CompactCalendarView_compactCalendarDisplayPastDaysTextColor, displayPastDaysTextColor);
             } finally {
                 typedArray.recycle();
             }
@@ -336,6 +338,14 @@ class CompactCalendarController {
 
     void setCurrentDayTextColor(int currentDayTextColor) {
         this.currentDayTextColor = currentDayTextColor;
+    }
+
+    void setDisplayPastDaysInDifferentColor(boolean displayPastDaysInDifferentColor) {
+        this.displayPastDaysInDifferentColor = displayPastDaysInDifferentColor;
+    }
+
+    void setDisplayPastDaysTextColor(int displayPastDaysTextColor) {
+        this.displayPastDaysTextColor = displayPastDaysTextColor;
     }
 
     void scrollRight() {
@@ -888,6 +898,9 @@ class CompactCalendarController {
         tempPreviousMonthCalendar.add(Calendar.MONTH, -1);
         int maximumPreviousMonthDay = tempPreviousMonthCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
+        boolean isPastMonth = monthToDrawCalender.get(Calendar.YEAR) < todayCalender.get(Calendar.YEAR) || (monthToDrawCalender.get(Calendar.YEAR) == todayCalender.get(Calendar.YEAR)
+                                                                                                            && monthToDrawCalender.get(Calendar.MONTH) < todayCalender.get(Calendar.MONTH));
+
         for (int dayColumn = 0, colDirection = isRtl? 6 : 0, dayRow = 0; dayColumn <= 6; dayRow++) {
             if (dayRow == 7) {
                 if (isRtl) {
@@ -944,6 +957,10 @@ class CompactCalendarController {
                         dayPaint.setColor(otherMonthDaysTextColor);
                         canvas.drawText(String.valueOf(day - maximumMonthDay), xPosition, yPosition, dayPaint);
                     }
+                } else if (displayPastDaysInDifferentColor && (isPastMonth || (isSameMonthAsToday && day < todayDayOfMonth))) {
+                    dayPaint.setStyle(Paint.Style.FILL);
+                    dayPaint.setColor(displayPastDaysTextColor);
+                    canvas.drawText(String.valueOf(day), xPosition, yPosition, dayPaint);
                 } else {
                     dayPaint.setStyle(Paint.Style.FILL);
                     dayPaint.setColor(defaultCalenderTextColorToUse);
