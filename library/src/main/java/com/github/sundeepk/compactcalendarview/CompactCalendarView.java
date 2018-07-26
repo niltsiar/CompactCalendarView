@@ -12,9 +12,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.OverScroller;
-
 import com.github.sundeepk.compactcalendarview.domain.Event;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -33,13 +31,15 @@ public class CompactCalendarView extends View {
     private boolean horizontalScrollEnabled = true;
 
     public interface CompactCalendarViewListener {
-        public void onDayClick(Date dateClicked);
-        public void onMonthScroll(Date firstDayOfNewMonth);
+        void onDayClick(Date dateClicked);
+
+        void onMonthScroll(Date firstDayOfNewMonth);
     }
 
     public interface CompactCalendarAnimationListener {
-        public void onOpened();
-        public void onClosed();
+        void onOpened();
+
+        void onClosed();
     }
 
     private final GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
@@ -185,6 +185,16 @@ public class CompactCalendarView extends View {
     public void setCurrentDayTextColor(int currentDayTextColor) {
         compactCalendarController.setCurrentDayTextColor(currentDayTextColor);
     }
+
+    public void setShouldDrawPastDaysInDifferentColor(boolean shouldDrawPastDaysInDifferentColor) {
+        compactCalendarController.setDisplayPastDaysInDifferentColor(shouldDrawPastDaysInDifferentColor);
+    }
+
+    public void setDisplayPastDaysTextColor(int displayPastDaysTextColor) {
+        compactCalendarController.setDisplayPastDaysTextColor(displayPastDaysTextColor);
+    }
+
+
 
     /**
      * see {@link #addEvent(Event, boolean)} when adding single events to control if calendar should redraw
