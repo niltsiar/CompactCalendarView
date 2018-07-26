@@ -21,6 +21,7 @@ import java.util.TimeZone;
 
 public class CompactCalendarView extends View {
 
+    public static final int NONE_INDICATOR = 0;
     public static final int FILL_LARGE_INDICATOR = 1;
     public static final int NO_FILL_LARGE_INDICATOR = 2;
     public static final int SMALL_INDICATOR = 3;

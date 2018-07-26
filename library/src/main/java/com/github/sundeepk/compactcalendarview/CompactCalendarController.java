@@ -941,7 +941,8 @@ class CompactCalendarController {
             } else {
                 int day = ((dayRow - 1) * 7 + colDirection + 1) - firstDayOfMonth;
                 int defaultCalenderTextColorToUse = calenderTextColor;
-                if (currentCalender.get(Calendar.DAY_OF_MONTH) == day && isSameMonthAsCurrentCalendar && !isAnimatingWithExpose) {
+                //Do not try to draw selected day indicator if style is none so the proper stlye for today can be applied
+                if (currentSelectedDayIndicatorStyle != NONE_INDICATOR && currentCalender.get(Calendar.DAY_OF_MONTH) == day && isSameMonthAsCurrentCalendar && !isAnimatingWithExpose) {
                     drawDayCircleIndicator(currentSelectedDayIndicatorStyle, canvas, xPosition, yPosition, currentSelectedDayBackgroundColor);
                     defaultCalenderTextColorToUse = currentSelectedDayTextColor;
                 } else if (isSameYearAsToday && isSameMonthAsToday && todayDayOfMonth == day && !isAnimatingWithExpose) {
@@ -981,6 +982,10 @@ class CompactCalendarController {
     }
 
     private void drawDayCircleIndicator(int indicatorStyle, Canvas canvas, float x, float y, int color, float circleScale) {
+        if (NONE_INDICATOR == indicatorStyle) {
+            return;
+        }
+
         float strokeWidth = dayPaint.getStrokeWidth();
         if (indicatorStyle == NO_FILL_LARGE_INDICATOR) {
             dayPaint.setStrokeWidth(2 * screenDensity);

@@ -18,6 +18,8 @@
   </attr>
   <attr name="compactCalendarCurrentSelectedDayIndicatorStyle"
     format="enum">
+    <enum name="none"
+      value="0" />
     <enum name="fill_large_indicator"
       value="1" />
     <enum name="no_fill_large_indicator"
