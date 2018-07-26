@@ -12,9 +12,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.OverScroller;
-
 import com.github.sundeepk.compactcalendarview.domain.Event;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +21,7 @@ import java.util.TimeZone;
 
 public class CompactCalendarView extends View {
 
+    public static final int NONE_INDICATOR = 0;
     public static final int FILL_LARGE_INDICATOR = 1;
     public static final int NO_FILL_LARGE_INDICATOR = 2;
     public static final int SMALL_INDICATOR = 3;
@@ -33,13 +32,15 @@ public class CompactCalendarView extends View {
     private boolean horizontalScrollEnabled = true;
 
     public interface CompactCalendarViewListener {
-        public void onDayClick(Date dateClicked);
-        public void onMonthScroll(Date firstDayOfNewMonth);
+        void onDayClick(Date dateClicked);
+
+        void onMonthScroll(Date firstDayOfNewMonth);
     }
 
     public interface CompactCalendarAnimationListener {
-        public void onOpened();
-        public void onClosed();
+        void onOpened();
+
+        void onClosed();
     }
 
     private final GestureDetector.SimpleOnGestureListener gestureListener = new GestureDetector.SimpleOnGestureListener() {
@@ -185,6 +186,19 @@ public class CompactCalendarView extends View {
     public void setCurrentDayTextColor(int currentDayTextColor) {
         compactCalendarController.setCurrentDayTextColor(currentDayTextColor);
     }
+
+    public void setShouldDrawPastDaysInDifferentColor(boolean shouldDrawPastDaysInDifferentColor) {
+        compactCalendarController.setDisplayPastDaysInDifferentColor(shouldDrawPastDaysInDifferentColor);
+    }
+
+    public void setDisplayPastDaysTextColor(int displayPastDaysTextColor) {
+        compactCalendarController.setDisplayPastDaysTextColor(displayPastDaysTextColor);
+    }
+
+    public void setDaysHeaderTextcolor(int daysHeaderTextcolor) {
+        compactCalendarController.setDaysHeaderTextColor(daysHeaderTextcolor);
+    }
+
 
     /**
      * see {@link #addEvent(Event, boolean)} when adding single events to control if calendar should redraw
