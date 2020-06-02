@@ -1,12 +1,11 @@
 package com.github.sundeepk.compactcalendarview;
 
-
 import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.support.annotation.NonNull;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.OvershootInterpolator;
+import androidx.annotation.NonNull;
 
 class AnimationHandler {
 
@@ -22,7 +21,7 @@ class AnimationHandler {
         this.compactCalendarView = compactCalendarView;
     }
 
-    void setCompactCalendarAnimationListener(CompactCalendarView.CompactCalendarAnimationListener compactCalendarAnimationListener){
+    void setCompactCalendarAnimationListener(CompactCalendarView.CompactCalendarAnimationListener compactCalendarAnimationListener) {
         this.compactCalendarAnimationListener = compactCalendarAnimationListener;
     }
 

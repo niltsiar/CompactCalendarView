@@ -6,15 +6,14 @@ import java.util.Locale;
 
 public class WeekUtils {
 
-    static String[] getWeekdayNames(Locale locale, int day, boolean useThreeLetterAbbreviation){
+    static String[] getWeekdayNames(Locale locale, int day, boolean useThreeLetterAbbreviation) {
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(locale);
         String[] dayNames = dateFormatSymbols.getShortWeekdays();
         if (dayNames == null) {
             throw new IllegalStateException("Unable to determine weekday names from default locale");
         }
         if (dayNames.length != 8) {
-            throw new IllegalStateException("Expected weekday names from default locale to be of size 7 but: "
-                    + Arrays.toString(dayNames) + " with size " + dayNames.length + " was returned.");
+            throw new IllegalStateException("Expected weekday names from default locale to be of size 7 but: " + Arrays.toString(dayNames) + " with size " + dayNames.length + " was returned.");
         }
 
         String[] weekDayNames = new String[7];
@@ -32,6 +31,5 @@ public class WeekUtils {
 
         return weekDayNames;
     }
-
 
 }
