@@ -41,7 +41,7 @@ public class CompactCalendarTab extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainTabView = inflater.inflate(R.layout.main_tab,container,false);
+        View mainTabView = inflater.inflate(R.layout.main_tab, container, false);
 
         final List<String> mutableBookings = new ArrayList<>();
 
@@ -165,7 +165,6 @@ public class CompactCalendarTab extends Fragment {
             }
         });
 
-
         // uncomment below to show indicators above small indicator events
         // compactCalendarView.shouldDrawIndicatorsBelowSelectedDays(true);
 
@@ -216,9 +215,11 @@ public class CompactCalendarTab extends Fragment {
             @Override
             public void onGlobalLayout() {
                 if (Build.VERSION.SDK_INT < 16) {
-                    layout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    layout.getViewTreeObserver()
+                          .removeGlobalOnLayoutListener(this);
                 } else {
-                    layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    layout.getViewTreeObserver()
+                          .removeOnGlobalLayoutListener(this);
                 }
                 compactCalendarView.showCalendarWithAnimation();
             }
@@ -282,15 +283,13 @@ public class CompactCalendarTab extends Fragment {
     private List<Event> getEvents(long timeInMillis, int day) {
         if (day < 2) {
             return Arrays.asList(new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis)));
-        } else if ( day > 2 && day <= 4) {
-            return Arrays.asList(
-                    new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis)),
-                    new Event(Color.argb(255, 100, 68, 65), timeInMillis, "Event 2 at " + new Date(timeInMillis)));
+        } else if (day > 2 && day <= 4) {
+            return Arrays.asList(new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis)),
+                                 new Event(Color.argb(255, 100, 68, 65), timeInMillis, "Event 2 at " + new Date(timeInMillis)));
         } else {
-            return Arrays.asList(
-                    new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis) ),
-                    new Event(Color.argb(255, 100, 68, 65), timeInMillis, "Event 2 at " + new Date(timeInMillis)),
-                    new Event(Color.argb(255, 70, 68, 65), timeInMillis, "Event 3 at " + new Date(timeInMillis)));
+            return Arrays.asList(new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis)),
+                                 new Event(Color.argb(255, 100, 68, 65), timeInMillis, "Event 2 at " + new Date(timeInMillis)),
+                                 new Event(Color.argb(255, 70, 68, 65), timeInMillis, "Event 3 at " + new Date(timeInMillis)));
         }
     }
 

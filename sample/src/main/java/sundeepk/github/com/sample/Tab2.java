@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 public class Tab2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_2,container,false);
+        View v = inflater.inflate(R.layout.tab_2, container, false);
         return v;
     }
 }

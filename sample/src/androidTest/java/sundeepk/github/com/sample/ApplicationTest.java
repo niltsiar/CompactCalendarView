@@ -17,7 +17,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-
 import com.azimolabs.conditionwatcher.ConditionWatcher;
 import com.azimolabs.conditionwatcher.Instruction;
 import com.facebook.testing.screenshot.Screenshot;
@@ -25,12 +24,6 @@ import com.facebook.testing.screenshot.ViewHelpers;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView.CompactCalendarAnimationListener;
 import com.github.sundeepk.compactcalendarview.domain.Event;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +33,10 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
@@ -68,18 +65,21 @@ public class ApplicationTest {
     private int onOpenedCallCount = 0;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws
+                        Exception {
         Locale.setDefault(Locale.ENGLISH);
         TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
         dateFormatForMonth = new SimpleDateFormat("MMM - yyyy", Locale.getDefault());
-        compactCalendarView = (CompactCalendarView) activityRule.getActivity().findViewById(R.id.compactcalendar_view);
-        mainContent = activityRule.getActivity().findViewById(R.id.parent);
+        compactCalendarView = (CompactCalendarView) activityRule.getActivity()
+                                                                .findViewById(R.id.compactcalendar_view);
+        mainContent = activityRule.getActivity()
+                                  .findViewById(R.id.parent);
         onClosedCallCount = 0;
         onOpenedCallCount = 0;
     }
 
     @Test
-    public void testItDrawsEventsRtl(){
+    public void testItDrawsEventsRtl() {
         Calendar currentCalender = Calendar.getInstance();
         currentCalender.set(Calendar.DAY_OF_MONTH, 1);
         currentCalender.set(Calendar.ERA, GregorianCalendar.AD);
@@ -101,7 +101,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsEventIndicatorsBelowHighlightedDayIndicators(){
+    public void testItDrawsEventIndicatorsBelowHighlightedDayIndicators() {
         setDrawEventsBelowDayIndicators(true);
         setDate(new Date(1423094400000L));
         addEvents(Calendar.FEBRUARY, 2015);
@@ -135,7 +135,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDisplaysDaysFromOtherMonthsForFeb(){
+    public void testItDisplaysDaysFromOtherMonthsForFeb() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setShouldDrawDaysFromOtherMonths(true);
@@ -143,7 +143,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDisplaysDaysFromOtherMonthsForFebRtl(){
+    public void testItDisplaysDaysFromOtherMonthsForFebRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -152,7 +152,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDisplaysDaysFromOtherMonthsForAfterScrollingFromFebToMarch(){
+    public void testItDisplaysDaysFromOtherMonthsForAfterScrollingFromFebToMarch() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setShouldDrawDaysFromOtherMonths(true);
@@ -161,7 +161,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDisplaysDaysFromOtherMonthsForAfterScrollingFromFebToMarchRtl(){
+    public void testItDisplaysDaysFromOtherMonthsForAfterScrollingFromFebToMarchRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -171,7 +171,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDisplaysDaysFromOtherMonthsForAfterScrollingFromFebToJan(){
+    public void testItDisplaysDaysFromOtherMonthsForAfterScrollingFromFebToJan() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setShouldDrawDaysFromOtherMonths(true);
         setDate(new Date(1423353600000L));
@@ -180,9 +180,8 @@ public class ApplicationTest {
         takeScreenShot();
     }
 
-
     @Test
-    public void testItDrawsSundayAsFirstDayOfMonthRtl(){
+    public void testItDrawsSundayAsFirstDayOfMonthRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -191,7 +190,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsMondayAsFirstDayOfMonthRtl(){
+    public void testItDrawsMondayAsFirstDayOfMonthRtl() {
         compactCalendarView.setIsRtl(true);
         // defaults to Monday
         //Sun, 08 Feb 2015 00:00:00 GMT
@@ -200,7 +199,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsTuesdayAsFirstDayOfMonthRtl(){
+    public void testItDrawsTuesdayAsFirstDayOfMonthRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -209,7 +208,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsWednesdayAsFirstDayOfMonthRtl(){
+    public void testItDrawsWednesdayAsFirstDayOfMonthRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -218,7 +217,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsThursdayAsFirstDayOfMonthRtl(){
+    public void testItDrawsThursdayAsFirstDayOfMonthRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -227,7 +226,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsFridayAsFirstDayOfMonthRtl(){
+    public void testItDrawsFridayAsFirstDayOfMonthRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -236,7 +235,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsSaturdayAsFirstDayOfMonthRtl(){
+    public void testItDrawsSaturdayAsFirstDayOfMonthRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -245,7 +244,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsWedAsFirstDayWithFrenchLocaleRtl(){
+    public void testItDrawsWedAsFirstDayWithFrenchLocaleRtl() {
         compactCalendarView.setIsRtl(true);
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -255,9 +254,8 @@ public class ApplicationTest {
         takeScreenShot();
     }
 
-
     @Test
-    public void testItDrawsSundayAsFirstDayOfMonth(){
+    public void testItDrawsSundayAsFirstDayOfMonth() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setFirstDayOfWeek(Calendar.SUNDAY);
@@ -265,7 +263,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsMondayAsFirstDayOfMonth(){
+    public void testItDrawsMondayAsFirstDayOfMonth() {
         // defaults to Monday
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
@@ -273,7 +271,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsTuesdayAsFirstDayOfMonth(){
+    public void testItDrawsTuesdayAsFirstDayOfMonth() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setFirstDayOfWeek(Calendar.TUESDAY);
@@ -281,7 +279,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsWednesdayAsFirstDayOfMonth(){
+    public void testItDrawsWednesdayAsFirstDayOfMonth() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setFirstDayOfWeek(Calendar.WEDNESDAY);
@@ -289,7 +287,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsThursdayAsFirstDayOfMonth(){
+    public void testItDrawsThursdayAsFirstDayOfMonth() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setFirstDayOfWeek(Calendar.THURSDAY);
@@ -297,7 +295,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsFridayAsFirstDayOfMonth(){
+    public void testItDrawsFridayAsFirstDayOfMonth() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setFirstDayOfWeek(Calendar.FRIDAY);
@@ -305,7 +303,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsSaturdayAsFirstDayOfMonth(){
+    public void testItDrawsSaturdayAsFirstDayOfMonth() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setFirstDayOfWeek(Calendar.SATURDAY);
@@ -313,7 +311,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsWednesdayAsFirstDayWithFrenchLocale(){
+    public void testItDrawsWednesdayAsFirstDayWithFrenchLocale() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         setFirstDayOfWeek(Calendar.WEDNESDAY);
@@ -323,7 +321,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testOnDayClickListenerIsCalledWhenLocaleIsFranceWithWedAsFirstDayOFWeek(){
+    public void testOnDayClickListenerIsCalledWhenLocaleIsFranceWithWedAsFirstDayOFWeek() {
         CompactCalendarViewListener listener = mock(CompactCalendarViewListener.class);
         compactCalendarView.setListener(listener);
 
@@ -350,7 +348,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testOnDayClickListenerIsCalled(){
+    public void testOnDayClickListenerIsCalled() {
         CompactCalendarViewListener listener = mock(CompactCalendarViewListener.class);
         compactCalendarView.setListener(listener);
 
@@ -372,7 +370,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testOnDayClickListenerIsCalledInRtl(){
+    public void testOnDayClickListenerIsCalledInRtl() {
         CompactCalendarViewListener listener = mock(CompactCalendarViewListener.class);
         compactCalendarView.setListener(listener);
         compactCalendarView.setIsRtl(true);
@@ -397,7 +395,8 @@ public class ApplicationTest {
     // Using mocks for listener causes espresso to throw an error because the callback is called from within animation handler.
     // Maybe a problem with espresso, for now manually check count.
     @Test
-    public void testOpenedAndClosedListerCalledForExposeAnimationCalendar() throws Throwable {
+    public void testOpenedAndClosedListerCalledForExposeAnimationCalendar() throws
+                                                                            Throwable {
         // calendar is opened by default.
         CompactCalendarAnimationListener listener = new CompactCalendarAnimationListener() {
             @Override
@@ -426,7 +425,8 @@ public class ApplicationTest {
     // Using mocks for listener causes espresso to throw an error because the callback is called from within animation handler.
     // Maybe a problem with espresso, for now manually check count.
     @Test
-    public void testOpenedAndClosedListerCalledForCalendar() throws Throwable {
+    public void testOpenedAndClosedListerCalledForCalendar() throws
+                                                             Throwable {
         // calendar is opened by default.
         CompactCalendarAnimationListener listener = new CompactCalendarAnimationListener() {
             @Override
@@ -452,7 +452,8 @@ public class ApplicationTest {
         assertEquals(onOpenedCallCount, 1);
     }
 
-    private void waitForAnimationFinish() throws Exception {
+    private void waitForAnimationFinish() throws
+                                          Exception {
         ConditionWatcher.waitForCondition(new Instruction() {
             @Override
             public String getDescription() {
@@ -467,7 +468,8 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDoesNotThrowNullPointerWhenNoAnimationListenerIsSet() throws Throwable {
+    public void testItDoesNotThrowNullPointerWhenNoAnimationListenerIsSet() throws
+                                                                            Throwable {
         //Sun, 08 Feb 2015 00:00:00 GMT
         compactCalendarView.setAnimationListener(null);
         setDate(new Date(1423353600000L));
@@ -476,7 +478,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testItDrawsDifferentColorsForCurrentSelectedDay(){
+    public void testItDrawsDifferentColorsForCurrentSelectedDay() {
         //Sun, 08 Feb 2015 00:00:00 GMT
         setDate(new Date(1423353600000L));
         compactCalendarView.setCurrentDayTextColor(Color.BLACK);
@@ -485,7 +487,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testWhenShouldSelectFirstDayOfMonthOnScrollIsFalseItDoesNotSelectFIrstDayOfMonth()  {
+    public void testWhenShouldSelectFirstDayOfMonthOnScrollIsFalseItDoesNotSelectFIrstDayOfMonth() {
         compactCalendarView.shouldSelectFirstDayOfMonthOnScroll(false);
         setDate(new Date(1423353600000L));
         scrollCalendarForwardBy(1);
@@ -494,11 +496,12 @@ public class ApplicationTest {
 
     // Nasty hack to get the toolbar to update the current month
     // TODO sample code should be refactored to do this
-    private void syncToolbarDate(){
+    private void syncToolbarDate() {
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                ActionBar toolbar = activityRule.getActivity().getSupportActionBar();
+                ActionBar toolbar = activityRule.getActivity()
+                                                .getSupportActionBar();
                 toolbar.setTitle(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
             }
         });
@@ -557,13 +560,13 @@ public class ApplicationTest {
             public void run() {
                 compactCalendarView.requestLayout();
                 ViewHelpers.setupView(mainContent)
-                        .setExactHeightPx(mainContent.getHeight())
-                        .setExactWidthPx(mainContent.getWidth())
-                        .layout();
+                           .setExactHeightPx(mainContent.getHeight())
+                           .setExactWidthPx(mainContent.getWidth())
+                           .layout();
                 safeSleep(200);
                 Screenshot.snap(mainContent)
-                        .setName(name)
-                        .record();
+                          .setName(name)
+                          .record();
             }
         });
     }
@@ -573,7 +576,8 @@ public class ApplicationTest {
             @Override
             public void run() {
                 compactCalendarView.setCurrentDate(date);
-                ActionBar toolbar = activityRule.getActivity().getSupportActionBar();
+                ActionBar toolbar = activityRule.getActivity()
+                                                .getSupportActionBar();
                 toolbar.setTitle(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
             }
         });
@@ -584,72 +588,70 @@ public class ApplicationTest {
             @Override
             public void run() {
                 compactCalendarView.shouldSelectFirstDayOfMonthOnScroll(shouldSelectFirstDay);
-                ActionBar toolbar = activityRule.getActivity().getSupportActionBar();
+                ActionBar toolbar = activityRule.getActivity()
+                                                .getSupportActionBar();
                 toolbar.setTitle(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
             }
         });
     }
 
-    public ViewAction clickXY(final float x, final float y){
-        final DisplayMetrics dm = activityRule.getActivity().getResources().getDisplayMetrics() ;
+    public ViewAction clickXY(final float x, final float y) {
+        final DisplayMetrics dm = activityRule.getActivity()
+                                              .getResources()
+                                              .getDisplayMetrics();
         final float spX = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, x, dm);
         final float spY = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, y, dm);
-        return new GeneralClickAction(
-                Tap.SINGLE,
-                new CoordinatesProvider() {
-                    @Override
-                    public float[] calculateCoordinates(View view) {
+        return new GeneralClickAction(Tap.SINGLE, new CoordinatesProvider() {
+            @Override
+            public float[] calculateCoordinates(View view) {
 
-                        final int[] screenPos = new int[2];
-                        view.getLocationOnScreen(screenPos);
+                final int[] screenPos = new int[2];
+                view.getLocationOnScreen(screenPos);
 
-                        final float screenX = screenPos[0] + spX;
-                        final float screenY = screenPos[1] + spY;
-                        float[] coordinates = {screenX, screenY};
+                final float screenX = screenPos[0] + spX;
+                final float screenY = screenPos[1] + spY;
+                float[] coordinates = {screenX, screenY};
 
-                        return coordinates;
-                    }
-                },
-                Press.FINGER);
+                return coordinates;
+            }
+        }, Press.FINGER);
     }
 
-    public ViewAction scroll(final int startX, final int startY, final int endX, final int endY){
-        final DisplayMetrics dm = activityRule.getActivity().getResources().getDisplayMetrics() ;
+    public ViewAction scroll(final int startX, final int startY, final int endX, final int endY) {
+        final DisplayMetrics dm = activityRule.getActivity()
+                                              .getResources()
+                                              .getDisplayMetrics();
         final float spStartX = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, startX, dm);
         final float spStartY = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, startY, dm);
         final float spEndX = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, endX, dm);
         final float spEndY = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, endY, dm);
-        return new GeneralSwipeAction(
-                Swipe.FAST,
-                new CoordinatesProvider() {
-                    @Override
-                    public float[] calculateCoordinates(View view) {
+        return new GeneralSwipeAction(Swipe.FAST, new CoordinatesProvider() {
+            @Override
+            public float[] calculateCoordinates(View view) {
 
-                        final int[] screenPos = new int[2];
-                        view.getLocationOnScreen(screenPos);
+                final int[] screenPos = new int[2];
+                view.getLocationOnScreen(screenPos);
 
-                        final float screenX = screenPos[0] + spStartX;
-                        final float screenY = screenPos[1] + spStartY;
-                        float[] coordinates = {screenX, screenY};
+                final float screenX = screenPos[0] + spStartX;
+                final float screenY = screenPos[1] + spStartY;
+                float[] coordinates = {screenX, screenY};
 
-                        return coordinates;
-                    }
-                },
-                new CoordinatesProvider() {
-                    @Override
-                    public float[] calculateCoordinates(View view) {
+                return coordinates;
+            }
+        }, new CoordinatesProvider() {
+            @Override
+            public float[] calculateCoordinates(View view) {
 
-                        final int[] screenPos = new int[2];
-                        view.getLocationOnScreen(screenPos);
+                final int[] screenPos = new int[2];
+                view.getLocationOnScreen(screenPos);
 
-                        final float screenX = screenPos[0] + spEndX;
-                        final float screenY = screenPos[1] + spEndY;
-                        float[] coordinates = {screenX, screenY};
+                final float screenX = screenPos[0] + spEndX;
+                final float screenY = screenPos[1] + spEndY;
+                float[] coordinates = {screenX, screenY};
 
-                        return coordinates;
-                    }
-                },
-                Press.FINGER);
+                return coordinates;
+            }
+        }, Press.FINGER);
     }
 
     private void addEvents(final int month, final int year) {
@@ -662,7 +664,7 @@ public class ApplicationTest {
         });
     }
 
-    private List<Event> getEventsFor(final int month, final int year){
+    private List<Event> getEventsFor(final int month, final int year) {
         Calendar currentCalender = Calendar.getInstance();
         currentCalender.setTime(new Date());
         currentCalender.set(Calendar.DAY_OF_MONTH, 1);
@@ -688,15 +690,13 @@ public class ApplicationTest {
     private List<Event> getEvents(long timeInMillis, int day) {
         if (day < 2) {
             return Arrays.asList(new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis)));
-        } else if ( day > 2 && day <= 4) {
-            return Arrays.asList(
-                    new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis)),
-                    new Event(Color.argb(255, 100, 68, 65), timeInMillis, "Event 2 at " + new Date(timeInMillis)));
+        } else if (day > 2 && day <= 4) {
+            return Arrays.asList(new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis)),
+                                 new Event(Color.argb(255, 100, 68, 65), timeInMillis, "Event 2 at " + new Date(timeInMillis)));
         } else {
-            return Arrays.asList(
-                    new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis) ),
-                    new Event(Color.argb(255, 100, 68, 65), timeInMillis, "Event 2 at " + new Date(timeInMillis)),
-                    new Event(Color.argb(255, 70, 68, 65), timeInMillis, "Event 3 at " + new Date(timeInMillis)));
+            return Arrays.asList(new Event(Color.argb(255, 169, 68, 65), timeInMillis, "Event at " + new Date(timeInMillis)),
+                                 new Event(Color.argb(255, 100, 68, 65), timeInMillis, "Event 2 at " + new Date(timeInMillis)),
+                                 new Event(Color.argb(255, 70, 68, 65), timeInMillis, "Event 3 at " + new Date(timeInMillis)));
         }
     }
 
@@ -712,7 +712,8 @@ public class ApplicationTest {
         ((Activity) context).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                int newHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, context.getResources().getDisplayMetrics());
+                int newHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, height, context.getResources()
+                                                                                                            .getDisplayMetrics());
                 compactCalendarView.getLayoutParams().height = newHeight;
                 compactCalendarView.setTargetHeight(newHeight);
                 compactCalendarView.requestLayout();
@@ -722,14 +723,14 @@ public class ApplicationTest {
     }
 
     private void scrollCalendarForwardBy(int months) {
-        for (int i =0; i < months; i++) {
+        for (int i = 0; i < months; i++) {
             onView(withId(R.id.compactcalendar_view)).perform(scroll(100, 100, -200, 0));
             safeSleep();
         }
     }
 
     private void scrollCalendarBackwardsBy(int months) {
-        for (int i =0; i < months; i++) {
+        for (int i = 0; i < months; i++) {
             onView(withId(R.id.compactcalendar_view)).perform(scroll(100, 10, 300, 0));
             safeSleep();
         }
@@ -748,18 +749,19 @@ public class ApplicationTest {
     }
 
     private void takeScreenShot(final int height) {
-        activityRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ViewHelpers.setupView(mainContent)
-                        .setExactHeightDp(height)
-                        .setExactWidthPx(mainContent.getWidth())
-                        .layout();
-            }
-        });
+        activityRule.getActivity()
+                    .runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ViewHelpers.setupView(mainContent)
+                                       .setExactHeightDp(height)
+                                       .setExactWidthPx(mainContent.getWidth())
+                                       .layout();
+                        }
+                    });
 
         Screenshot.snap(mainContent)
-                .record();
+                  .record();
     }
 
     private void takeScreenShot() {

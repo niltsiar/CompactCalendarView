@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), titles, numberOfTabs);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, numberOfTabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);

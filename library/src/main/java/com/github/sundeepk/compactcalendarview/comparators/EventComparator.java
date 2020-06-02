@@ -1,7 +1,6 @@
 package com.github.sundeepk.compactcalendarview.comparators;
 
 import com.github.sundeepk.compactcalendarview.domain.Event;
-
 import java.util.Comparator;
 
 public class EventComparator implements Comparator<Event> {

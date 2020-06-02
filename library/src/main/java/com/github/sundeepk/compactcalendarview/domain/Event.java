@@ -34,13 +34,21 @@ public class Event {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Event event = (Event) o;
 
-        if (color != event.color) return false;
-        if (timeInMillis != event.timeInMillis) return false;
+        if (color != event.color) {
+            return false;
+        }
+        if (timeInMillis != event.timeInMillis) {
+            return false;
+        }
         return data != null ? data.equals(event.data) : event.data == null;
     }
 
@@ -54,10 +62,6 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
-                "color=" + color +
-                ", timeInMillis=" + timeInMillis +
-                ", data=" + data +
-                '}';
+        return "Event{" + "color=" + color + ", timeInMillis=" + timeInMillis + ", data=" + data + '}';
     }
 }
