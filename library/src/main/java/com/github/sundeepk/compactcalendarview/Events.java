@@ -1,7 +1,6 @@
 package com.github.sundeepk.compactcalendarview;
 
 import com.github.sundeepk.compactcalendarview.domain.Event;
-
 import java.util.List;
 
 class Events {
@@ -24,13 +23,21 @@ class Events {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Events event = (Events) o;
 
-        if (timeInMillis != event.timeInMillis) return false;
-        if (events != null ? !events.equals(event.events) : event.events != null) return false;
+        if (timeInMillis != event.timeInMillis) {
+            return false;
+        }
+        if (events != null ? !events.equals(event.events) : event.events != null) {
+            return false;
+        }
 
         return true;
     }
@@ -44,9 +51,6 @@ class Events {
 
     @Override
     public String toString() {
-        return "Events{" +
-                "events=" + events +
-                ", timeInMillis=" + timeInMillis +
-                '}';
+        return "Events{" + "events=" + events + ", timeInMillis=" + timeInMillis + '}';
     }
 }
