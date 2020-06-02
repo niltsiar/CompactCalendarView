@@ -1,15 +1,15 @@
 package sundeepk.github.com.sample;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    CharSequence titles[];
+    CharSequence[] titles;
     int numbOfTabs;
 
-    public ViewPagerAdapter(FragmentManager fm, CharSequence titles[], int mNumbOfTabs) {
+    public ViewPagerAdapter(FragmentManager fm, CharSequence[] titles, int mNumbOfTabs) {
         super(fm);
         this.titles = titles;
         this.numbOfTabs = mNumbOfTabs;
